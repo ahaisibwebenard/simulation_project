@@ -1,0 +1,17 @@
+{
+  "name": "lake-bunyonyi-simulation",
+  "version": "1.0.0",
+  "description": "An interactive 30-day Lake Bunyonyi visitor simulation with explicit teaching assumptions.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node scripts/dev-server.mjs",
+    "dev": "node scripts/dev-server.mjs",
+    "test": "node --test tests/model.test.js tests/server.test.js",
+    "check": "node --check scripts/dev-server.mjs && node --check src/scripts/app.js && node --check src/scripts/model.js",
+    "build": "node scripts/build.mjs"
+  }
+}

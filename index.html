@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore a transparent, illustrative 30-day Lake Bunyonyi tourist simulation. Adjust arrivals, season, accommodation and spending to compare scenarios.">
+  <meta name="theme-color" content="#173f37">
+  <title>Bunyonyi Visitor Lab — Lake Bunyonyi simulation</title>
+  <link rel="icon" type="image/svg+xml" href="./public/icons/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles/main.css">
+</head>
+<body>
+  <a class="skip" href="#results">Skip to results</a>
+  <header class="topbar">
+    <a class="brand" href="#"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 16 15 6l9 10M17 16l8-8 11 10M4 24q8-7 16 0t16 0M4 32q8-7 16 0t16 0"/></svg><span>BUNYONYI<small>VISITOR LAB</small></span></a>
+    <nav aria-label="Main navigation"><a href="#results" class="active">Scenario lab</a><a href="#assumptions">The model <span aria-hidden="true">↗</span></a></nav>
+    <span class="private"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="7" width="10" height="7" rx="2"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>Private workspace</span>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">UGANDA <span aria-hidden="true">/</span> LAKE BUNYONYI <span aria-hidden="true">/</span> TOURISM SIMULATION</p>
+        <h1 id="page-title">Discover the lake.<br><span>Explore the impact.</span></h1>
+        <p class="intro-copy">An interactive 30-day simulation of visitor demand, overnight stays and the capacity that shapes a month at Lake Bunyonyi.</p>
+        <a class="hero-cta" href="#results">Explore the simulation <span aria-hidden="true">↓</span></a>
+        <p class="hero-disclaimer"><span aria-hidden="true">●</span> A learning model with illustrative assumptions, not a live forecast.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 520 340" role="presentation">
+          <defs>
+            <linearGradient id="hero-water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#88b9a2"/><stop offset="1" stop-color="#326b62"/></linearGradient>
+            <linearGradient id="hero-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d8e6c6"/><stop offset="1" stop-color="#a8c9aa"/></linearGradient>
+          </defs>
+          <path fill="url(#hero-sky)" d="M0 0h520v182H0z"/>
+          <circle cx="388" cy="73" r="31" fill="#f3d9a2" opacity=".9"/>
+          <path fill="#79967b" d="m0 188 85-92 59 59 76-92 110 127 64-78 126 80v65H0z"/>
+          <path fill="#54745f" d="m0 183 97-56 70 48 70-67 97 82 79-47 107 49v59H0z"/>
+          <path fill="url(#hero-water)" d="M0 193q60-18 120 0t120 0 120 0 160 0v147H0z"/>
+          <path fill="#9fc6ad" opacity=".75" d="M0 230q58-16 116 0t116 0 116 0 172 0M0 276q68-13 136 0t136 0 136 0 112 0"/>
+          <path fill="#e9e4ca" d="M177 196q21-24 47-8l15 11q-33 10-62-3"/>
+          <path fill="#54745f" d="m191 190 18-21 17 20z"/>
+          <path fill="#f5f2e7" d="m191 209 35-2-9 10h-17z"/>
+          <path fill="none" stroke="#f4ead1" stroke-width="2" stroke-linecap="round" d="M74 251q22-7 44 0m233 22q19-6 38 0m-154 30q23-7 46 0"/>
+          <path fill="#e7d19f" d="M333 186h43l-8 9h-29z"/>
+          <path fill="#fff7df" d="m351 157 19 29h-19z"/>
+          <path fill="#d2a65e" d="m351 162 12 23h-12z"/>
+          <path stroke="#f3ead0" stroke-width="2" d="M351 156v31"/>
+        </svg>
+        <span class="hero-art-caption">A scenic setting for exploring visitor scenarios</span>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <aside class="controls-panel" aria-labelledby="controls-title">
+        <div class="panel-top"><span class="step-number">01</span><span class="eyebrow">SET THE CONDITIONS</span></div>
+        <h2 id="controls-title">Shape your scenario</h2>
+        <p class="panel-caption">Change an input, then run the month.</p>
+        <div class="preset-label">Start with a scenario</div>
+        <div class="presets" aria-label="Scenario presets"><button type="button" data-preset="low">Low season</button><button type="button" data-preset="normal" class="selected" aria-pressed="true">Normal</button><button type="button" data-preset="peak">Peak demand</button></div>
+        <form id="scenario-form" novalidate>
+          <div class="field"><label for="arrivals">Base visitor interest <span>people / day</span></label><div class="input-row"><input type="range" id="arrivals-range" aria-label="Base visitor interest slider" min="0" max="500" step="1" value="100"><input type="number" id="arrivals" name="arrivals" min="0" max="500" step="1" value="100" required aria-describedby="arrivals-help arrivals-error"></div><p id="arrivals-help" class="field-help">Before season and daily variation.</p><p class="field-error" id="arrivals-error"></p></div>
+          <div class="field"><label for="season">Season <span>demand multiplier</span></label><select id="season" name="season" aria-describedby="season-error"><option value="low">Low season · 0.65×</option><option value="normal" selected>Normal season · 1.00×</option><option value="peak">Peak season · 1.50×</option></select><p class="field-error" id="season-error"></p></div>
+          <div class="field"><label for="overnight">Visitors seeking a stay <span>%</span></label><div class="input-row"><input type="range" id="overnight-range" aria-label="Overnight visitor share slider" min="0" max="100" step="1" value="60"><input type="number" id="overnight" name="overnight" min="0" max="100" step="1" value="60" required aria-describedby="overnight-error"></div><p class="field-error" id="overnight-error"></p></div>
+          <div class="split-fields"><div class="field"><label for="stay">Length of stay</label><div class="unit-input"><input type="number" id="stay" name="stay" min="1" max="7" step="1" value="2" required aria-describedby="stay-error"><span>nights</span></div><p class="field-error" id="stay-error"></p></div><div class="field"><label for="beds">Available beds</label><div class="unit-input"><input type="number" id="beds" name="beds" min="0" max="1000" step="1" value="160" required aria-describedby="beds-error"><span>beds</span></div><p class="field-error" id="beds-error"></p></div></div>
+          <div class="field"><label for="spend">Spending per person-day <span>UGX</span></label><input class="wide-input" type="number" id="spend" name="spend" min="0" max="500000" step="1000" value="120000" required aria-describedby="spend-help spend-error"><p class="field-help" id="spend-help">One combined amount for all local services.</p><p class="field-error" id="spend-error"></p></div>
+          <div id="form-status" class="form-status" role="status">Baseline scenario is displayed.</div>
+          <button type="submit" class="run-button"><span>Run scenario</span><span aria-hidden="true">→</span></button>
+          <button type="button" id="reset" class="reset-button">Reset to baseline</button>
+        </form>
+        <div class="horizon"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="13" rx="2"/><path d="M6 2v4M14 2v4M3 9h14"/></svg><span><strong>30 simulated days</strong><small>Same daily variation in every run</small></span></div>
+      </aside>
+
+      <section id="results" class="results" aria-labelledby="results-title">
+        <div class="results-top"><div class="section-heading"><span class="step-number">02</span><h2 id="results-title">The month, in perspective</h2></div><div class="run-badge"><span></span><span id="scenario-label">Normal season</span></div></div>
+        <div class="metric-grid" aria-live="polite" aria-atomic="true" id="metrics"></div>
+
+        <section class="chart-panel" aria-labelledby="chart-title">
+          <div class="chart-header"><div><p class="eyebrow">THE DAILY RHYTHM</p><h3 id="chart-title">Visitor arrivals</h3><p id="chart-description">New visitors each day, before and after bed limits.</p></div><div class="chart-tabs" role="group" aria-label="Chart measure"><button type="button" id="visitors-tab" class="selected" aria-pressed="true">Visitors</button><button type="button" id="beds-tab" aria-pressed="false">Bed occupancy</button></div></div>
+          <div class="legend" id="legend"></div>
+          <div class="chart-wrap" id="chart-wrap"></div>
+          <div class="day-explorer"><div class="day-picker"><label for="day-slider">Explore a day <strong id="day-label">Day 1 · Mon</strong></label><input type="range" id="day-slider" min="1" max="30" step="1" value="1" aria-label="Explore simulated day"></div><div class="day-stats" id="day-stats" aria-live="polite"></div></div>
+          <div class="chart-foot"><span><span class="weekend-swatch"></span> Shaded days are weekends.</span><button type="button" id="export">Download daily CSV <span aria-hidden="true">↓</span></button></div>
+        </section>
+
+        <div class="lower-grid">
+          <section class="activity-panel" aria-labelledby="activity-title"><div class="card-heading"><div><p class="eyebrow">AROUND THE LAKE</p><h3 id="activity-title">Where visits ripple out</h3></div><span class="small-tag">Illustrative</span></div>
+            <div class="lake-scene"><svg class="lake-map" viewBox="0 0 460 200" role="img" aria-labelledby="map-title map-desc"><title id="map-title">Illustrative activity routes on a lake</title><desc id="map-desc">A schematic lake with boat, shoreline and viewpoint activity zones. This is not a geographic map.</desc><defs><pattern id="water" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><path d="M0 9q4-3 8 0t8 0" fill="none" stroke="#bad3c4" stroke-width=".8" opacity=".5"/></pattern></defs><path d="M0 14Q65 35 114 12T212 27T318 14T460 28V200H0Z" fill="#e7ecdc"/><path d="M0 48Q48 24 95 50T170 42T254 59T339 42T460 64V172Q400 204 350 174T256 178T165 157T83 180T0 164Z" fill="#c7ddd0"/><path d="M0 48Q48 24 95 50T170 42T254 59T339 42T460 64V172Q400 204 350 174T256 178T165 157T83 180T0 164Z" fill="url(#water)"/><path d="M194 93q18-24 37-4t-4 30q-30 5-33-26M274 137q14-20 27-2t-14 18q-13-1-13-16" fill="#e7ecdc" stroke="#9fbba4"/><path d="M115 138Q150 71 213 102T345 83" fill="none" stroke="#5b8974" stroke-width="1.5" stroke-dasharray="5 5"/><circle r="3" fill="#b58037"><animateMotion dur="10s" repeatCount="indefinite" path="M115 138Q150 71 213 102T345 83"/></circle><g class="map-point"><circle cx="115" cy="138" r="15" fill="#173f37"/><path d="M108 139h14l-4 5h-6zm7-2v-8l6 8" fill="none" stroke="#fff" stroke-width="1.2"/></g><g><circle cx="213" cy="102" r="12" fill="#b58037"/><path d="m207 105 6-9 6 9" fill="none" stroke="#fff" stroke-width="1.3"/></g><g><circle cx="345" cy="83" r="12" fill="#6f8d61"/><path d="m339 86 6-9 6 9m-9-4 3 2 2-2" fill="none" stroke="#fff" stroke-width="1.3"/></g><text x="115" y="170" text-anchor="middle">SHORELINE</text><text x="213" y="76" text-anchor="middle">ISLAND CIRCUIT</text><text x="345" y="60" text-anchor="middle">VIEWPOINTS</text></svg><span class="map-caption">Schematic routes · not a geographic map</span></div>
+            <div class="activity-list" id="activity-list"></div><p class="card-note">One main activity per person-day; repeat visits count again. Fixed shares are assumptions.</p>
+          </section>
+          <section class="insight-panel" aria-labelledby="insight-title"><p class="eyebrow">READING THE RESULTS</p><h3 id="insight-title">What this scenario tells you</h3><div id="insights"></div><div class="baseline-note"><span aria-hidden="true">↗</span><p><strong>A fair comparison.</strong> All changes are measured against the same normal-season baseline and the same daily variation.</p></div></section>
+        </div>
+        <details class="data-details"><summary>View the daily results table <span aria-hidden="true">+</span></summary><div class="table-scroll"><table><caption>Current scenario · daily simulation results</caption><thead><tr><th scope="col">Day</th><th scope="col">Interested</th><th scope="col">Served</th><th scope="col">Day visitors</th><th scope="col">Stay requests</th><th scope="col">Stay admissions</th><th scope="col">Turned away</th><th scope="col">Beds occupied</th><th scope="col">Person-days</th><th scope="col">Spend (UGX)</th></tr></thead><tbody id="daily-table"></tbody></table></div></details>
+      </section>
+    </div>
+
+    <section id="assumptions" class="assumptions" aria-labelledby="assumptions-title"><div class="assumptions-intro"><p class="eyebrow">OPEN THE BLACK BOX</p><h2 id="assumptions-title">A simple model.<br>Visible assumptions.</h2><p>These are teaching assumptions, not measured Lake Bunyonyi tourism statistics. Change the inputs to explore relationships, not to predict actual visitor numbers.</p></div><div class="assumption-items"><details open><summary>How visitors arrive <span>01</span></summary><p>Each run covers 30 days, starting on a hypothetical Monday. Daily interest = base interest × season × day factor, rounded to a whole person. Low / normal / peak season use 0.65 / 1.00 / 1.50. Weekdays use 0.92 and weekends 1.20, each with a fixed seeded variation between 0.85 and 1.15 (seed 42).</p></details><details><summary>How beds and stays work <span>02</span></summary><p>The lake starts with empty beds. The overnight share determines stay requests; the rest are day visitors with no capacity limit. One guest uses one bed for the chosen number of nights. Departures free beds before new arrivals. Requests beyond free beds are turned away and leave; there is no waiting list, booking, alternative lodging or conversion to a day visit. Guests with nights beyond day 30 remain in beds; their later spending is outside the window.</p></details><details><summary>How spending and activities work <span>03</span></summary><p>A person-day is one day visitor or one occupied bed on a simulated day. Spending = person-days × the input spending rate, including accommodation, food, transport and activities together. It is gross visitor spending, not profit or a measured local economic impact. Each person-day has one main activity: boat / island circuit 40%, shoreline 35%, viewpoints 25%. The first two counts are rounded; viewpoints receives the remainder. Routes are illustrative; travel times are not modelled.</p></details><details><summary>Baseline, limits and interpretation <span>04</span></summary><p>The fixed baseline uses 100 interested visitors/day, normal season, 60% overnight visitors, 2-night stays, 160 beds and UGX 120,000/person-day. Inputs allow 0–500 visitors/day, 0–100% overnight, 1–7 nights, 0–1,000 beds and UGX 0–500,000 spending. Average occupancy includes the empty opening period. Zero beds is shown as no bed capacity. No real weather, holidays, costs, queues, environmental thresholds or calibrated tourism data are included.</p></details></div></section>
+    <footer><span class="footer-brand">BUNYONYI <span>/</span> VISITOR LAB</span><span>Built for exploration. Every number is a simulation.</span><a href="#page-title">Back to top ↑</a></footer>
+  </main>
+  <script type="module" src="./src/scripts/app.js"></script>
+</body>
+</html>
